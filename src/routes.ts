@@ -1,0 +1,15 @@
+import { Router } from "express";
+import authMiddleware from "./app/middleware/authMiddleware";
+import UserController from "./app/controllers/UserController";
+import AuthController from "./app/controllers/AuthController";
+import EmployeesController from "./app/controllers/EmployeesController";
+const router = Router();
+router.post("/users", UserController.store);
+router.post("/auth", AuthController.authenticate);
+router.get("/users", authMiddleware, UserController.index);
+router.post("/funcionarios", EmployeesController.store);
+router.get("/funcionarios", EmployeesController.getUsers);
+router.get("/funcionarios/:id", EmployeesController.getUser);
+router.put("/funcionarios/:id", EmployeesController.updateUser);
+router.delete("/funcionarios/:id", EmployeesController.deleteUser);
+export default router;
