@@ -8,7 +8,7 @@ export class CreateEmployees1626100865569 implements MigrationInterface {
         columns: [
           {
             name: "id",
-            type: "integer",
+            type: "int",
             isPrimary: true,
             isGenerated: true,
             generationStrategy: "increment",
@@ -17,6 +17,7 @@ export class CreateEmployees1626100865569 implements MigrationInterface {
             name: "nome",
             type: "varchar",
             isUnique: false,
+            default: false,
           },
           {
             name: "email",
@@ -38,6 +39,11 @@ export class CreateEmployees1626100865569 implements MigrationInterface {
           },
           {
             name: "cargo",
+            type: "varchar",
+            isUnique: false,
+          },
+          {
+            name: "nome_filial",
             type: "varchar",
             isUnique: false,
           },

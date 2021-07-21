@@ -12,7 +12,7 @@ export default function authMiddleware(
 ) {
   const { authorization } = req.headers;
   if (!authorization) {
-    return res.sendStatus(401);
+    return res.json(401);
   }
   const token = authorization.replace("Bearer", "").trim();
   try {
@@ -22,6 +22,6 @@ export default function authMiddleware(
     req.userId = id;
     return next();
   } catch {
-    return res.sendStatus(401);
+    return res.json(401);
   }
 }

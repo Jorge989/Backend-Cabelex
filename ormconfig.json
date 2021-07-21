@@ -5,7 +5,7 @@
   "port": 3306,
   "username": "root",
   "password": "@JORGE1989",
-  "database": "actionsys",
+  "database": "orbital",
   "synchronize": true,
   "logging": false,
   "entities": ["./src/app/models/*.ts"],

@@ -10,7 +10,7 @@ class AuthController {
 
     const user = await repository.findOne({ where: { email } });
     if (!user) {
-      return res.sendStatus(401);
+      return res.status(401).send({ error: "Usuário não encontrado" });
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
