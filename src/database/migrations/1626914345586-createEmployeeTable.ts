@@ -1,6 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from "typeorm";
 
-export class CreateEmployees1626100865569 implements MigrationInterface {
+export class createEmployeeTable1626914345586 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -8,16 +13,15 @@ export class CreateEmployees1626100865569 implements MigrationInterface {
         columns: [
           {
             name: "id",
-            type: "int",
+            type: "integer",
             isPrimary: true,
             isGenerated: true,
             generationStrategy: "increment",
           },
           {
-            name: "nome",
+            name: "name",
             type: "varchar",
             isUnique: false,
-            default: false,
           },
           {
             name: "email",
@@ -43,11 +47,6 @@ export class CreateEmployees1626100865569 implements MigrationInterface {
             isUnique: false,
           },
           {
-            name: "nome_filial",
-            type: "varchar",
-            isUnique: false,
-          },
-          {
             name: "nivel",
             type: "varchar",
             isUnique: false,
@@ -64,7 +63,23 @@ export class CreateEmployees1626100865569 implements MigrationInterface {
 
             default: "now()",
           },
+          {
+            name: "filialId",
+            type: "integer",
+            default: null,
+          },
         ],
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      "funcionarios",
+      new TableForeignKey({
+        columnNames: ["filialId"],
+        referencedColumnNames: ["id"],
+        referencedTableName: "filiais",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       })
     );
   }

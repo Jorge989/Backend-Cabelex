@@ -6,27 +6,31 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
+  ManyToOne,
 } from "typeorm";
 
 @Entity("funcionarios")
-class User {
+class Empolyee {
   @PrimaryGeneratedColumn("increment")
   id: number;
   @Column({ nullable: true })
   nome: string;
-  @Column()
+  @Column({ nullable: true })
   email: string;
-  @Column()
+  @Column({ nullable: true })
   data_nascimento: Date;
-  @Column()
+  @Column({ nullable: true })
   data_admissao: Date;
-  @Column()
+  @Column({ nullable: true })
   setor: string;
-  @Column()
+  @Column({ nullable: true })
   cargo: string;
-  @Column()
-  nome_filial: string;
-  @Column()
+
+  // @ManyToOne(() => Filiais, (filial) => filial.id)
+  // filial: Filiais;
+
+  @Column({ nullable: true })
   nivel: string;
   @CreateDateColumn()
   created_at: Date;
@@ -34,4 +38,4 @@ class User {
   update_at: Date;
 }
 
-export default User;
+export { Empolyee };

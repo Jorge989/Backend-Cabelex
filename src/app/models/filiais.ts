@@ -1,26 +1,12 @@
-import {
-  BeforeInsert,
-  BeforeUpdate,
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity("funcionarios")
-class User {
-  @PrimaryGeneratedColumn("increment")
+@Entity()
+export class Filiais {
+  @PrimaryGeneratedColumn()
   id: number;
   @Column({ nullable: true })
-  nome_filial: string;
-  @Column()
-  total_de_funcionarios: string;
+  name: string;
 
-  @CreateDateColumn()
-  created_at: Date;
-  @UpdateDateColumn()
-  update_at: Date;
+  @Column({ nullable: true })
+  qtd_employees: number;
 }
-
-export default User;

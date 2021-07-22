@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import Filiais from "../models/filiais";
+import { Filiais } from "../models/filiais";
 class FiliaisController {
   async deleteFilial(req: Request, res: Response) {
     const results = await getRepository(Filiais).delete(req.params.id);
@@ -25,17 +25,13 @@ class FiliaisController {
   }
   async store(req: Request, res: Response) {
     const repository = getRepository(Filiais);
-    const { nome_filial, created_at, update_at, total_de_funcionarios } =
-      req.body;
-    const userExists = await repository.findOne({ where: { nome_filial } });
+    const { name } = req.body;
+    const userExists = await repository.findOne({ where: { name } });
     if (userExists) {
       return res.sendStatus(409);
     }
     const Filiasall = await repository.create({
-      nome_filial,
-      total_de_funcionarios,
-      created_at,
-      update_at,
+      name,
     });
     await repository.save(Filiasall);
     return res.json(Filiasall);

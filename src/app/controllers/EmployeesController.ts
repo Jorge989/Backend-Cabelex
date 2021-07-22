@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import Empolyee from "../models/Funcionarios";
+import { Empolyee } from "../models/Funcionarios";
 class EmployeesController {
   async deleteUser(req: Request, res: Response) {
     const results = await getRepository(Empolyee).delete(req.params.id);
