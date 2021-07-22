@@ -18,11 +18,6 @@ export class createFiliaisTable1626913866702 implements MigrationInterface {
             type: "varchar(255)",
             isUnique: false,
           },
-          {
-            name: "qtd_employees",
-            type: "integer",
-            default: 0,
-          },
         ],
       })
     );

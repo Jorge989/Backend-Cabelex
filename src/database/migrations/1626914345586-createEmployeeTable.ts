@@ -71,17 +71,6 @@ export class createEmployeeTable1626914345586 implements MigrationInterface {
         ],
       })
     );
-
-    await queryRunner.createForeignKey(
-      "funcionarios",
-      new TableForeignKey({
-        columnNames: ["filialId"],
-        referencedColumnNames: ["id"],
-        referencedTableName: "filiais",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-      })
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
