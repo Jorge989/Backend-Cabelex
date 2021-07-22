@@ -1,12 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Empolyee } from "./Funcionarios";
 @Entity()
 export class Filiais {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ nullable: true })
   name: string;
-
-  @Column({ nullable: true })
-  qtd_employees: number;
+  @OneToMany((type) => Empolyee, (filial) => Filiais)
+  funcionarios: Empolyee[];
 }

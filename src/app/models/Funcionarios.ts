@@ -9,7 +9,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from "typeorm";
-
+import { Filiais } from "./filiais";
 @Entity("funcionarios")
 class Empolyee {
   @PrimaryGeneratedColumn("increment")
@@ -27,8 +27,8 @@ class Empolyee {
   @Column({ nullable: true })
   cargo: string;
 
-  // @ManyToOne(() => Filiais, (filial) => filial.id)
-  // filial: Filiais;
+  @ManyToOne((type) => Filiais, (funcionarios) => Empolyee, { eager: true })
+  filial: Filiais;
 
   @Column({ nullable: true })
   nivel: string;
